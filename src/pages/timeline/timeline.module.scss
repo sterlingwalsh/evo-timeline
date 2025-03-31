@@ -1,0 +1,38 @@
+.timeline_page {
+	&::before {
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		content: '';
+		background-size: cover;
+		background-position: center;
+		opacity: 0.2;
+		background-image: url('https://www.sciencehistory.org/wp-content/uploads/2023/04/nikola_tesla_with_his_equipment_final-1024x773.jpeg');
+	}
+
+	padding: 1rem;
+	display: grid;
+	grid-template-columns: 6fr 4fr;
+	gap: 1.5rem;
+	grid-template-rows: minmax(24rem, 4fr) 6fr;
+}
+
+.section {
+	border-radius: 1rem;
+	background-color: var(--timeline-section);
+	padding: 1.5rem;
+}
+
+.timeline {
+	// height: 24rem;
+	grid-column: 1 / 3;
+}
+
+.details {
+}
+
+.category_details {
+}

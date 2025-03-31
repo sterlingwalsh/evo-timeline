@@ -1,0 +1,32 @@
+[
+	{
+		"title": "United States Patent 9,502.202 B2",
+		"author": "Lockheed Martin Corporation",
+		"fileName": "Lockheed Martin US9502202.pdf",
+		"date": "2016-11-22",
+		"scientificField": "Patent",
+		"tags": ["coherent matterwave beam", "Aharonov-Bohm Effects", "Optomechanical interface"],
+		"fileSHA256": "10dded977f3dd9af607b818f8cb43f7461a2b5aae4dd02fb6e565ef8d53b97af",
+		"IPFS_Link": "https://dweb.link/ipfs/QmUQnw5T5EaRHxKetxmCkmatmkuAtxhHgQQSN1f6DwotFV"
+	},
+	{
+		"title": "Water can trigger nuclear reaction to produce energy and isotope gases",
+		"author": "Bin-Juine Huang, Yu-Hsiang Pan, Po-Hsien Wu, Jong-Fu Yeh, Ming-Li Tso, Ying-Hung Liu, Litu Wu, Ching-Kang Huang, I-Fee Chen, Che-Hao Lin, T. R. Tseng, Fang-Wei Kang, Tan-Feng Tsai, Kuan-Che Lan, Yi-Tung Chen, Mou-Yung Liao, Li Xu, Sih-Li Chen \u0026 Robert William Greenyer",
+		"fileName": "Huang_et_al-2024-Scientific_Reports.pdf",
+		"date": "2024-01-02",
+		"scientificField": "nuclear condensed matter physics",
+		"tags": ["water cavitation", "nuclear reaction", "energy generation"],
+		"fileSHA256": "515ba7b64a8aa84e16a6ea097f9dde1979fbb8dbf865cd987843a66979295fdb",
+		"IPFS_Link": "https://dweb.link/ipfs/QmcWJispeJvchFdK2rRQZCkCQY48zQxwVPaHRUx79W8SQy"
+	},
+	{
+		"title": "Direct Electrical Production from LENR",
+		"author": "David J. Nagel",
+		"fileName": "Nagel IE163 Direct Electrical Production from LENR.pdf",
+		"date": "2022-11-01",
+		"scientificField": "nuclear condensed matter physics",
+		"tags": ["LENR", "nuclear reaction", "energy generation"],
+		"fileSHA256": "979562e2c31b9ea28d30f6b87dbcc950f47a02c175d1fcbe6d2ce209528837ec",
+		"IPFS_Link": "https://dweb.link/ipfs/QmV7FsdBKuLvg41YMY6ee3yqjTfRxh92oVZ2K2eRHDB9cu"
+	}
+]

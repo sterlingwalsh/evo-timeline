@@ -1,0 +1,16 @@
+.theme__dark {
+	--black: #000000;
+	--white: #ffffff;
+	--dark: #242424;
+
+	// App
+	--app-foreground: var(--white);
+	--app-highlight: var(--branding-cyan);
+
+	// Pages
+
+	// Timeline
+	--timeline-section: color-mix(in srgb, var(--dark) 60%, transparent);
+
+	--tooltip-background: var(--dark);
+}
