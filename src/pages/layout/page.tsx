@@ -1,3 +1,4 @@
+import { HeaderItem } from './headeritem';
 import classes from './page.module.scss';
 
 const PageRoot: React.FC<React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>> = (props) => {
@@ -8,6 +9,9 @@ const PageHeader: React.FC<React.PropsWithChildren<React.HTMLAttributes<HTMLDivE
     return <div {...props} className={`${classes.page__header}${props.className ? ` ${props.className}` : ''}`} >
         <div className={classes.page__header_left}>
             <img height='100%' className={classes.header__logo} src={'/assets/images/logo.svg'} alt='evo-labs' />
+        </div>
+        <div className={classes.page__header_center}>
+            <HeaderItem to='/library' label='Library' />
         </div>
         <div className={classes.page__header_right}></div>
     </div>

@@ -1,4 +1,4 @@
-import { Page } from '../page'
+import { Page } from '../layout/page'
 import classes from './login.module.scss'
 
 export const LoginPage: React.FC = () => {

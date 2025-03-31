@@ -1,0 +1,72 @@
+.override {
+	// &:global(.MuiTextField-root) {
+	// 	color: inherit;
+	// 	:global(.MuiFormLabel-root) {
+	// 		color: inherit;
+	// 	}
+	// 	:global(.MuiInputBase-root) {
+	// 		color: inherit;
+	// 	}
+	//     :global(.MuiOutlinedInput-root){
+
+	//     }
+	// }
+	:global(.MuiInputBase-root) {
+		color: inherit;
+
+		fieldset {
+			border-color: rgb(from currentColor r g b / 0.6);
+		}
+	}
+	:global(.MuiInputAdornment-root),
+	:global(.MuiAutocomplete-endAdornment) {
+		color: inherit;
+	}
+	:global(.MuiButtonBase-root):global(.MuiAutocomplete-clearIndicator) {
+		color: inherit;
+		svg {
+			color: currentColor;
+		}
+	}
+	:global(.MuiFormLabel-root),
+	.aware_highlight {
+		color: inherit;
+	}
+	&:hover {
+		:global(.MuiInputBase-root) {
+			fieldset {
+				border-color: rgb(from var(--app-highlight) r g b / 0.5);
+			}
+		}
+	}
+
+	&:focus-within,
+	:global(.Mui-focused) {
+		&:global(.MuiFormLabel-root) {
+			&:global(.MuiInputLabel-shrink),
+			.aware_highlight {
+				color: var(--app-highlight);
+			}
+		}
+		&:global(.MuiInputBase-root) {
+			fieldset {
+				border-color: var(--app-highlight);
+			}
+		}
+	}
+
+	:global(.MuiChip-root) {
+		color: inherit;
+		svg {
+			color: rgb(from currentColor r g b / 0.6);
+			&:hover {
+				color: rgb(from currentColor r g b / 1);
+			}
+		}
+
+		&:hover {
+			color: var(--app-highlight);
+			border-color: var(--app-highlight);
+		}
+	}
+}

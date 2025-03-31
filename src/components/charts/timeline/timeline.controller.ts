@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import { D3ZoomEvent } from 'd3';
 import { Require } from '../../../types/utility';
+import classes from './timeline.module.scss';
 
 export interface TimelineDataPoint<T extends object = object> {
 	data: T;
@@ -39,7 +40,10 @@ export class TimelineController<T extends object = object> {
 	private spacing = 6;
 	private categoryMap = new Map<string | number, TimelineCategory>();
 
-	private tooltip: d3.Selection<SVGGElement, unknown, null, undefined> | undefined = undefined;
+	private tooltip: d3.Selection<HTMLDivElement, unknown, null, undefined> | undefined = undefined;
+
+	getHoverDetails?: (item: T) => { title?: string; text?: string[]; image?: string };
+	onItemClick?: (item: T) => void;
 
 	constructor() {}
 
@@ -55,6 +59,7 @@ export class TimelineController<T extends object = object> {
 	) {
 		this._el = svg;
 		this._root = root;
+		if (!data.length) return;
 		this.analyzeData(data, categories);
 
 		this.setupSize();
@@ -90,11 +95,11 @@ export class TimelineController<T extends object = object> {
 
 	setupTooltip() {
 		this.tooltip = d3
-			.select(this._el)
-			.append('g')
+			.select(this._root)
+			.append('div')
 			.attr('id', '_tooltip')
 			.style('visibility', 'hidden')
-			.style('pointer-events', 'none');
+			.attr('class', classes.tooltip_root);
 
 		this.tooltip.append('text').attr('fill', 'white');
 	}
@@ -220,8 +225,10 @@ export class TimelineController<T extends object = object> {
 
 		// domain padding
 		const insetDate = this.scaleX.invert(this.spacing * 3);
-		const padding = insetDate.valueOf() - minX.valueOf();
-		this.scaleX.domain([new Date(minX.valueOf() - padding), new Date(maxX).valueOf() + padding]);
+		const padding = Math.abs(insetDate.valueOf() - minX.valueOf());
+		const paddedMin = new Date(minX.valueOf() - padding);
+		const paddedMax = new Date(maxX.valueOf() + padding);
+		this.scaleX.domain([paddedMin, paddedMax]);
 
 		chartBody.attr('transform', `translate(${categoriesWidth + this.spacing}, 0)`);
 
@@ -245,25 +252,35 @@ export class TimelineController<T extends object = object> {
 					.style('cursor', 'pointer')
 					.on('mouseenter', (evt, d) => {
 						const [mx, my] = d3.pointer(evt, this._el);
-						this.tooltip
+						const tooltip = this.tooltip
 							?.style('visibility', 'visible')
-							.attr('transform', `translate(${mx}, ${my})`)
-							.select('text')
-							.text(
-								Object.entries(d.data)
-									.map(([key, val]) => `${key}: ${val}`)
-									.join('\n')
-							);
+							.style('transform', `translate(${mx + 15}px, ${my}px)`);
+
+						const details = this.getHoverDetails?.(d.data);
+
+						const html = `
+								<div class="${classes.tooltip_icon}">
+									${details?.image ?? ''}
+								</div>
+								<div class="${classes.tooltip_description}">
+									<div class="${classes.tooltip_title}">${details?.title ?? ''}</div>
+									<div class="${classes.tooltip_details}">${details?.text?.map((d) => `<div>${d}</div>`).join('')}</div>
+								</div>
+						`;
+						tooltip?.html(html);
 
 						d3.select(this._el).select(`rect[data-category="${d.categoryId}"`).attr('fill', d.color);
 					})
 					.on('mousemove', (evt, ...args) => {
 						const [mx, my] = d3.pointer(evt, this._el);
-						this.tooltip?.attr('transform', `translate(${mx}, ${my})`);
+						this.tooltip?.style('transform', `translate(${mx + 15}px, ${my}px)`);
 					})
 					.on('mouseleave', (evt, d) => {
-						this.tooltip?.style('visibility', 'hidden').select('text').text('');
+						this.tooltip?.style('visibility', 'hidden').select('text').text('').html('');
 						d3.select(this._el).select(`rect[data-category:"${d.categoryId}"`).attr('fill', '#000000');
+					})
+					.on('click', (evt, d) => {
+						this.onItemClick?.(d.data);
 					});
 
 				g.append('line')
